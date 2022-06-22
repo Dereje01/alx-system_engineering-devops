@@ -1,2 +1,3 @@
 #!/bin/bash
 ln -s /bin/ls __ls___
+ls -la __ls___
