@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# a Bash script that configures a Ubuntu server
+sudo cp /etc/hosts ~/hosts.new
+if grep -q '^.*localhost$' ~/hosts.new; then
+    sudo sed -i 's/^.*localhost$/127.0.0.2 localhost/' ~/hosts.new
+else
+    sudo sed -i '1s/^/127.0.0.2 localhost\n/' ~/hosts.new
+fi
+if grep -q '^.*facebook.com$' ~/hosts.new; then
+    sudo sed -i 's/^.*facebook.com$/8.8.8.8 facebook.com/' ~/hosts.new
+else
+    sudo sed -i '1s/^/8.8.8.8 facebook.com\n/' ~/hosts.new
+fi
+sudo cp -f ~/hosts.new /etc/hosts
